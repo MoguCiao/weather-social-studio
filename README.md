@@ -1,72 +1,118 @@
 # Atmos — Weather Social Studio
 
-根据用户提供的八屏参考图实现的英文交互原型。保留冰蓝渐变、玻璃面板、柔和雪景、左侧导航和四步创作流程，并适配桌面、平板与手机。
+**Turn weather into viral content.**
 
-## 启动
+将天气灵感转化为社媒内容：发现话题、整理简报、编辑脚本与素材，再将内容保存到每周发布日历。
 
-无需安装依赖或构建。
+Atmos 是一个英文界面的交互原型，采用冰蓝渐变、玻璃面板与雪景视觉，支持桌面、平板和手机。使用原生 HTML、CSS 和 JavaScript，无需安装依赖或构建。
+
+[在线预览 ↗](https://weather-social-studio-flow.soundsnail12.chatgpt.site/) · [图文使用 Demo](docs/DEMO.md) · [本地运行](#本地运行) · [后端接入方案](BACKEND-PROPOSAL.md)
+
+> 在线预览需要相应的网站访问权限。截图中的内容与数据用于演示；下载源码后可在本地完整体验。
+
+![Atmos 首页：天气灵感、雪山主视觉与创作入口](docs/media/home.jpg)
+
+## 从灵感到发布计划
+
+**Discover → Brief → Script → Creative → Calendar**
+
+| 模块 | 可以体验什么 |
+| --- | --- |
+| **Topic Finder** | 按关键词、地区、时间、天气及内容类型筛选示例热点，查看趋势与受众信息 |
+| **Content Brief** | 设置主题、地区、受众和内容角度，选择图文、短视频、轮播等五种格式 |
+| **Script Studio** | 选择演示脚本、编辑分镜，并保存自己的版本 |
+| **Asset Studio** | 挑选素材、切换比例、编辑标题与文案，预览带分镜字幕的动画 |
+| **Publishing Calendar** | 在周日历或按日列表中总览计划，按平台和状态筛选，查看内容、改期与导出 |
+| **Review & Export** | 预览社媒卡片、选择平台，导出创作包或保存排期 |
+| **Analytics** | 通过周期与维度切换探索示例内容表现 |
+| **Workspace** | 素材库、品牌偏好、浏览器草稿保存和 JSON 工作区导出 |
+
+## 界面预览
+
+### 素材创作
+
+选择画面、调整比例和文案，并通过 **Save to Calendar** 将当前创作保存到日历。
+
+![素材创作工作室与 Save to Calendar 入口](docs/media/asset-studio.jpg)
+
+### 每周发布日历
+
+按周查看每个平台的内容任务，区分 **Draft** 与 **Scheduled**。每条任务保存独立的简报、脚本、文案、素材引用和排期，继续创作不会覆盖已保存的内容。
+
+![每周发布日历：平台筛选、任务卡片、草稿与已排期状态](docs/media/calendar-week.jpg)
+
+<details>
+<summary><strong>查看更多：热点筛选与手机排期列表</strong></summary>
+
+#### 热点发现与筛选
+
+![Topic Finder 的地区筛选菜单与天气话题](docs/media/topics.jpg)
+
+#### 手机端列表
+
+手机端可使用 **List** 查看按日期分组的任务；**Week** 支持独立横向滚动。
+
+<img src="docs/media/calendar-mobile.jpg" alt="390px 手机端发布排期列表" width="320">
+
+</details>
+
+所有截图均来自实际运行的页面。日历中的四条示例任务来自本地演示工作区，线上首次打开时不会自动创建。
+
+## 两分钟上手
+
+1. 打开 **Topics**，选择话题，在详情页点击 **Create from this topic**。
+2. 填写 **Content Brief**，选择格式，点击 **Generate Scripts**。
+3. 选择脚本，通过 **Edit Script** 修改内容，再点击 **Generate Assets**。
+4. 选择素材和比例，编辑标题、文案，点击 **Save to Calendar**。
+5. 选择日期、时间、平台及 **Draft / Scheduled** 状态，确认保存。
+6. 进入左侧 **Calendar** 查看本周计划；点击任务可查看原内容、**Edit Schedule** 改期或 **Export** 导出。
+
+完整步骤与操作截图见 [图文使用 Demo](docs/DEMO.md)。也可以在 Calendar 点击 **New Post**，直接创建计划。
+
+## 本地运行
+
+需要 Git 和 Python 3；仓库访问需要相应的 GitHub 权限。
 
 ```bash
+git clone https://github.com/MoguCiao/weather-social-studio.git
 cd weather-social-studio
 python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 ```
 
-访问 `http://127.0.0.1:4173`。必须通过 HTTP 服务打开，图片导出使用同源资源。
+打开 [http://127.0.0.1:4173](http://127.0.0.1:4173)。已有源码时，进入仓库目录执行最后一行即可；使用 `Ctrl+C` 停止服务。
 
-## 已实现
+通过 HTTP 服务访问可让同源图片导出正常工作。图片、字体和脚本均在仓库中，无需第三方 CDN。
 
-- Home：雪山主视觉、功能介绍、热点入口。
-- Topic Finder：关键词搜索、地区／时间／天气／内容类型筛选、分类标签、世界地图。
-- Topic Details：增长指标、趋势图悬停、受众分布、关键词及参考素材。
-- Content Brief：主题、目标地区、受众、时间、内容角度及五种内容格式。
-- Script Generation：三种演示脚本、格式切换、分镜编辑与保存。
-- Asset Generation：图片／视频分镜演示／模板标签、素材选择、比例切换、标题及文案编辑、动态分镜预览。
-- Calendar：周日历／按日列表、前后周与 Today 导航、平台及状态筛选、本周统计。脚本和素材页可保存内容快照；支持草稿、排期、查看内容、改期、移除后撤销及 TXT 导出。
-- Review & Export：平台开关、文案、北京时间排期、手机预览，并可直接保存到 Calendar。
-- Analytics：日期范围、平台／内容／受众切换、趋势图、示例表现明细。
-- Asset Library、Brand Kit、Settings、通知、键盘快捷键及弹窗焦点管理。
-- 下载带标题的创作图片（1080×1920、1080×1080 或 1920×1080），原始摄影图片、TXT 创作包和 JSON 工作区。
+## 当前实现范围
 
-## 数据边界
-
-这是前端交互原型。页面顶栏标记 `Demo workspace`；天气热点、趋势、社交指标均为示例。脚本使用本地模板；照片是精选示例素材；视频为带分镜字幕的浏览器动画预览，没有生成 MP4。
-
-每条日历任务独立保存当时的简报、脚本、文案、素材引用、比例、平台及日期时间，继续编辑工作区不会覆盖已保存的内容。旧版演示排期可继续在日历中查看。
-
-草稿、品牌偏好、已编辑脚本及日历任务保存在当前域名的 `localStorage`，键为 `atmos-studio-v1`。不同域名、浏览器和设备之间不会同步。真实天气服务、AI 生成任务和社交 OAuth 尚未接入；排期不会触发真实发布。可从 Settings 导出工作区 JSON。
-
-## 文件
-
-| 文件 | 内容 |
+| 能力 | 当前状态 |
 | --- | --- |
-| `dist/index.html` | 页面入口 |
-| `dist/styles.css` | 字体、视觉样式与响应式断点 |
-| `dist/app.js` | 状态、示例数据、路由和交互 |
-| `dist/calendar.js` | 周排期视图、内容快照、任务编辑与导出 |
-| `dist/calendar.css` | 日历、列表与任务弹窗的响应式样式 |
-| `dist/selects.js` | 热点筛选下拉菜单、键盘操作与无障碍状态 |
-| `dist/assets/` | 本地图片、字体及字体许可证 |
-| `BACKEND-PROPOSAL.md` | 后端架构与分阶段接入建议 |
-| `qa/` | 浏览器验收截图及记录 |
-| `.openai/hosting.json` | Sites 私有部署配置 |
+| 页面与交互 | 已实现，可在本地体验完整创作和排期流程 |
+| 脚本与素材 | 本地脚本模板和精选摄影素材；未连接真实 AI 生成服务 |
+| 天气、热点与分析指标 | 示例数据；未连接实时天气或社交分析 API |
+| 日历与草稿 | 保存在当前域名的浏览器 `localStorage`，刷新保留，不跨设备同步 |
+| 社交平台发布 | 保存演示排期；未连接 OAuth，也不会触发真实发布 |
+| 导出 | 带标题 JPG、原图、TXT 创作包、已保存任务 TXT、工作区 JSON |
+| 视频 | 浏览器分镜动画预览；尚不生成 MP4 或音频 |
 
-仅发布 `dist/`。图片与字体均保存在项目中，运行不依赖第三方 CDN。
+日历时区为 **Asia / Shanghai**。`Scheduled` 需要未来的日期时间、至少一个平台及文案；未准备好的内容可以先存为 `Draft`。
 
-## 资源来源
+浏览器数据使用 `atmos-studio-v1` 键。不同域名、浏览器和设备的数据相互独立，清除站点数据也会移除本地草稿；可在 **Settings** 导出工作区 JSON 留存。
 
-照片来自 Unsplash；用户参考图仅用于视觉与流程参考，没有作为网页内容嵌入。
+## 源码与文档
 
-| 本地文件 | Unsplash 图片 |
+| 路径 | 内容 |
 | --- | --- |
-| `peak.jpg` | https://unsplash.com/photos/yJ7FcTIlmjo — Amit Gupta |
-| `winter-cabin.jpg` | https://unsplash.com/photos/_4xlA2a3pK0 — Delfina Iacub |
-| `alpine.jpg` | https://unsplash.com/photos/E3pbVPY_0Uw — Harry Dona |
-| `village.jpg` | https://unsplash.com/photos/8hCbyovrhKw — The 414 Company |
-| `snow.jpg` | https://images.unsplash.com/photo-1418985991508-e47386d96a71 |
-| `mountain.jpg` | https://images.unsplash.com/photo-1464822759023-fed622ff2c3b |
-| `aurora.jpg` | https://images.unsplash.com/photo-1531366936337-7c912a4589a7 |
-| `cabin.jpg` | https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8 |
-| `japan.jpg` | https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e |
-| `sunset.jpg` | https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05 |
+| [`dist/index.html`](dist/index.html) | 页面入口 |
+| [`dist/app.js`](dist/app.js) | 路由、工作区状态、示例数据和创作交互 |
+| [`dist/styles.css`](dist/styles.css) | 视觉样式与响应式布局 |
+| [`dist/calendar.js`](dist/calendar.js) / [`calendar.css`](dist/calendar.css) | 日历、内容快照和任务编辑 |
+| [`dist/selects.js`](dist/selects.js) | 自定义筛选菜单与键盘操作 |
+| [`dist/assets/`](dist/assets/) | 本地图片、字体与字体许可证 |
+| [`docs/DEMO.md`](docs/DEMO.md) | 图文操作演示 |
+| [`docs/media/`](docs/media/) | README 和使用演示截图 |
+| [`qa/QA.md`](qa/QA.md) | 浏览器验收与功能验证记录 |
+| [`BACKEND-PROPOSAL.md`](BACKEND-PROPOSAL.md) | 账户、数据、生成任务与真实发布的接入建议 |
+| [`.openai/hosting.json`](.openai/hosting.json) | Sites 静态部署配置，仅发布 `dist/` |
 
-字体为 DM Sans 和 Manrope，通过 Google Fonts 获取，SIL Open Font License 保留在 `dist/assets/` 中。图标是内嵌 SVG。
+照片来自 Unsplash，字体为 DM Sans 与 Manrope。完整的素材来源和字体许可信息见 [图片与字体来源](docs/ASSETS.md)。
