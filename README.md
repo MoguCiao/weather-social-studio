@@ -39,6 +39,7 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 | `dist/index.html` | 页面入口 |
 | `dist/styles.css` | 字体、视觉样式与响应式断点 |
 | `dist/app.js` | 状态、示例数据、路由和交互 |
+| `dist/selects.js` | 热点筛选下拉菜单、键盘操作与无障碍状态 |
 | `dist/assets/` | 本地图片、字体及字体许可证 |
 | `BACKEND-PROPOSAL.md` | 后端架构与分阶段接入建议 |
 | `qa/` | 浏览器验收截图及记录 |
