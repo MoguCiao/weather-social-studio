@@ -21,7 +21,8 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 - Content Brief：主题、目标地区、受众、时间、内容角度及五种内容格式。
 - Script Generation：三种演示脚本、格式切换、分镜编辑与保存。
 - Asset Generation：图片／视频分镜演示／模板标签、素材选择、比例切换、标题及文案编辑、动态分镜预览。
-- Publish & Schedule：平台开关、文案、北京时间排期、手机预览、演示排期保存及移除。
+- Calendar：周日历／按日列表、前后周与 Today 导航、平台及状态筛选、本周统计。脚本和素材页可保存内容快照；支持草稿、排期、查看内容、改期、移除后撤销及 TXT 导出。
+- Review & Export：平台开关、文案、北京时间排期、手机预览，并可直接保存到 Calendar。
 - Analytics：日期范围、平台／内容／受众切换、趋势图、示例表现明细。
 - Asset Library、Brand Kit、Settings、通知、键盘快捷键及弹窗焦点管理。
 - 下载带标题的创作图片（1080×1920、1080×1080 或 1920×1080），原始摄影图片、TXT 创作包和 JSON 工作区。
@@ -30,7 +31,9 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 
 这是前端交互原型。页面顶栏标记 `Demo workspace`；天气热点、趋势、社交指标均为示例。脚本使用本地模板；照片是精选示例素材；视频为带分镜字幕的浏览器动画预览，没有生成 MP4。
 
-草稿、品牌偏好、已编辑脚本及演示排期保存在当前域名的 `localStorage`，键为 `atmos-studio-v1`。不同域名、浏览器和设备之间不会同步。真实天气服务、AI 生成任务和社交 OAuth 尚未接入；排期不会触发真实发布。可从 Settings 导出工作区 JSON。
+每条日历任务独立保存当时的简报、脚本、文案、素材引用、比例、平台及日期时间，继续编辑工作区不会覆盖已保存的内容。旧版演示排期可继续在日历中查看。
+
+草稿、品牌偏好、已编辑脚本及日历任务保存在当前域名的 `localStorage`，键为 `atmos-studio-v1`。不同域名、浏览器和设备之间不会同步。真实天气服务、AI 生成任务和社交 OAuth 尚未接入；排期不会触发真实发布。可从 Settings 导出工作区 JSON。
 
 ## 文件
 
@@ -39,6 +42,8 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 | `dist/index.html` | 页面入口 |
 | `dist/styles.css` | 字体、视觉样式与响应式断点 |
 | `dist/app.js` | 状态、示例数据、路由和交互 |
+| `dist/calendar.js` | 周排期视图、内容快照、任务编辑与导出 |
+| `dist/calendar.css` | 日历、列表与任务弹窗的响应式样式 |
 | `dist/selects.js` | 热点筛选下拉菜单、键盘操作与无障碍状态 |
 | `dist/assets/` | 本地图片、字体及字体许可证 |
 | `BACKEND-PROPOSAL.md` | 后端架构与分阶段接入建议 |
